@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Портал адаптации сотрудников | СТИЛСОФТ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+    <div class="logo-area">
+        <h2>СТИЛСОФТ</h2>
+        <p>Портал адаптации</p>
+    </div>
+    <div class="nav-menu">
+        <a onclick="showPage('home')">🏠 <span>Главная</span></a>
+        <a onclick="showPage('profile')">👤 <span>Личный кабинет</span></a>
+        <a onclick="showPage('tasks')">✅ <span>Мои задачи</span></a>
+        <a onclick="showPage('chat')">💬 <span>Чат с наставником</span></a>
+        <a onclick="showPage('colleagues')">👥 <span>Коллеги</span></a>
+        <a onclick="showPage('news')">📰 <span>Новости</span></a>
+    </div>
+    <a onclick="logout()" class="logout-btn">🚪 <span>Выход</span></a>
+</nav>
+
+<main>
+    <section id="home" class="page active-page">
+        <div class="page-header">
+            <h1>Добро пожаловать, <span id="welcome-name">Николай</span>!</h1>
+            <p>Ваш персональный портал адаптации в компании СТИЛСОФТ</p>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>📊 Прогресс адаптации</h3>
+                <div class="progress-container" style="margin: 16px 0;">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%;"></div>
+                </div>
+                <p id="progress-text">0% выполнено</p>
+                <span class="badge">Испытательный срок до 29.07.2026</span>
+            </div>
+            <div class="card">
+                <h3>🎯 Быстрые ссылки</h3>
+                <ul style="margin-top: 12px; list-style: none;">
+                    <li>📖 <a href="#" onclick="showPage('tasks'); return false;">Выполнить задачи дня</a></li>
+                    <li>💬 <a href="#" onclick="showPage('chat'); return false;">Задать вопрос наставнику</a></li>
+                    <li>📁 <a href="#">Скачать регламент компании</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🌟 Корпоративные ценности</h3>
+            <p>В СТИЛСОФТ мы ценим инновации, ответственность и командный дух. Наш портал поможет вам стать частью команды быстрее и эффективнее.</p>
+        </div>
+    </section>
+
+    <section id="profile" class="page">
+        <div class="page-header">
+            <h1>Личный кабинет</h1>
+            <p>Управляйте своими данными</p>
+        </div>
+        <div class="card">
+            <div style="display: flex; gap: 24px; align-items: center; flex-wrap: wrap;">
+                <div style="width: 100px; height: 100px; background: linear-gradient(135deg, var(--accent), #8B5CF6); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem;">👤</div>
+                <div>
+                    <h2 id="profile-name">Николай Котовский</h2>
+                    <p>🔹 Junior Developer | Отдел разработки ПО</p>
+                    <p>📅 Дата начала работы: 7 мая 2022</p>
+                    <p>📧 baglon96@gmai.com | 📞 +7 (938) 313-42-18</p>
+                    <button onclick="editProfile()">✏️ Редактировать профиль</button>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Документы</h3>
+            <p>✅ Трудовой договор (подписан)</p>
+            <p>✅ Согласие на обработку персональных данных</p>
+            <p>⏳ Заявление на страховку (ожидает)</p>
+        </div>
+    </section>
+
+    <section id="tasks" class="page">
+        <div class="page-header">
+            <h1>Мои задачи</h1>
+            <p>Чек-лист адаптации: выполняйте шаг за шагом</p>
+        </div>
+        <div class="card" id="tasks-list"></div>
+        <div class="card">
+            <h3>📈 Рекомендация дня</h3>
+            <p>Познакомьтесь с вашим наставником в чате и задайте все волнующие вопросы!</p>
+        </div>
+    </section>
+
+    <section id="chat" class="page">
+        <div class="page-header">
+            <h1>Чат с наставником</h1>
+            <p>Ваш наставник: Алексей Петров (Team Lead)</p>
+        </div>
+        <div class="card">
+            <div class="chat-messages" id="chat-messages">
+                <div class="message message-bot">
+                    <div class="message-content">👋 Привет! Я твой виртуальный помощник. Если у тебя есть вопросы — задавай, я помогу или свяжу с наставником.</div>
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Напишите сообщение..." onkeypress="if(event.key === 'Enter') sendMessage()">
+                <button onclick="sendMessage()">Отправить</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="colleagues" class="page">
+        <div class="page-header">
+            <h1>Наши коллеги</h1>
+            <p>С кем вы работаете</p>
+        </div>
+        <div class="grid-3">
+            <div class="card"><h4>👨‍💻 Алексей Петров</h4><p>Team Lead / Наставник</p><small>📧 a.petrov@stilsoft.ru</small></div>
+            <div class="card"><h4>👩‍💼 Мария Сидорова</h4><p>HR Manager</p><small>📧 m.sidorova@stilsoft.ru</small></div>
+            <div class="card"><h4>👨‍🔧 Дмитрий Волков</h4><p>DevOps Engineer</p><small>📧 d.volkov@stilsoft.ru</small></div>
+            <div class="card"><h4>👩‍💻 Елена Козлова</h4><p>Senior Developer</p><small>📧 e.kozlova@stilsoft.ru</small></div>
+            <div class="card"><h4>👨‍🎨 Анна Морозова</h4><p>UX/UI Designer</p><small>📧 a.morozova@stilsoft.ru</small></div>
+        </div>
+    </section>
+
+    <section id="news" class="page">
+        <div class="page-header">
+            <h1>Новости и объявления</h1>
+            <p>Будьте в курсе событий компании</p>
+        </div>
+        <div id="news-container"></div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
